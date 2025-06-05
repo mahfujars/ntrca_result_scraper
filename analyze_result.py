@@ -1,3 +1,20 @@
+# ------------------------------------------------------------------------------
+# Copyright (c) 2025 Mahfujar Rahman
+# Author: Mahfujar Rahman Noyon <mrnoyon.cse@gmail.com>
+# Created: 2025-06-05
+# Last Modified: 2025-06-05
+# Description: NTRCA Result Analysis Tool - Analyzes candidate results and subject statistics
+# 
+# Features:
+# - Search candidates by roll number (-r/--roll)
+# - Analyze subject performance by code (-s/--subject_code)
+# - Show top failing subjects (-f/--fail_rate)
+# - Display all subject statistics (-a/--all)
+# - Interactive subject analysis after candidate search
+# 
+# Usage: python script.py [-r ROLL] [-s CODE] [-f] [-a]
+# ------------------------------------------------------------------------------
+
 import argparse
 import json
 from collections import defaultdict
