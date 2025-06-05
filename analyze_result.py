@@ -15,6 +15,8 @@ with open("all_results.json", "r", encoding="utf-8") as f:
 
 subject_code_map = {}
 
+overall_passed = 0
+overall_failed = 0
 for candidate in data:
     roll = candidate.get("roll", "")
     status = candidate.get("status", "").upper()
@@ -51,13 +53,15 @@ for candidate in data:
     total_counts[code] += 1
     if status == "PASSED":
         passed_counts[code][position] += 1
+        overall_passed += 1
     elif status == "FAILED":
         failed_counts[code] += 1
+        overall_failed += 1
 
+print(f"{'='*70}\nTotal Candidates: Passed = {overall_passed}, Failed = {overall_failed}")
 fail_percentages = {}
 
 if filter_code:
-    print("Subject Code Analysis:")
     print("="*70)
     if filter_code in total_counts:
         subj = subject_code_map.get(filter_code, ("UNKNOWN POSITION", "UNKNOWN SUBJECT"))[1]
@@ -69,10 +73,10 @@ if filter_code:
         print(f"Subject: {subj} ({filter_code}) | Total candidates: {total}")
         if filter_code in passed_counts:
             for position, count in passed_counts[filter_code].items():
-                print(f"     Passed {position}: {count}")
+                print(f"         Passed {position}: {count}")
         else:
             print("    None")
-        print(f"     Failed Count: {failed} | Fail Percentage: {fail_percentage:.2f}%")
+        print(f"         Failed Count: {failed} | Fail Percentage: {fail_percentage:.2f}%")
         print("-"*70)
     else:
         print(f"No data found for subject code: {filter_code}")
